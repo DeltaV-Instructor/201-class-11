@@ -19,4 +19,7 @@ video, audio, img {
 img {
   height: 500px;
   width: 500px;
+  float: left;
+  margin-left: 50px;
+  margin-top: 50px;
 }
