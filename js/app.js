@@ -63,6 +63,34 @@ console.log('app js connected');
 
 
 
+//Global Variables
+let pizzaImageSectionTag = document.getElementById('all_pizzas');
+let rightPizzaImageTag = document.getElementById('left_pizza_img') ;
+let leftPizzaImageTag = document.getElementById('right_pizza_img');
+
+let totalClicks = 0;
+
+//the variable to store the pizzas that are already on the page
+let leftPizzaOnThePage = null;
+let rightPizzaOnThePage = null;
+
+
+
+
+
+//Constructor Function Expression
+const PizzaPicture = function(name, imageSrc){
+  this.name = name;
+  this.url = imageSrc;
+  //count our pizza votes
+  this.clicks = 0;
+  this.timesShown = 0;
+  //push into an array
+  PizzaPicture.allImages.push(this);
+
+
+};
+PizzaPicture.allImages = [];
 
 
 
@@ -72,6 +100,80 @@ console.log('app js connected');
 
 
 
+const renderNewPizzas = function(leftIndex, rightIndex){
+  // console.log(PizzaPicture.allImages[leftIndex].url);
+  // console.log(PizzaPicture.allImages[rightIndex].url);
+  leftPizzaImageTag.src = PizzaPicture.allImages[leftIndex].url;
+  rightPizzaImageTag.src = PizzaPicture.allImages[rightIndex].url;
+
+};
+
+
+
+
+//add function for getting new pizza objects from array based on the index number we get back from out random generator.
+const pickNewPizzas = function(){
+  const leftIndex = Math.floor(Math.random() * PizzaPicture.allImages.length);
+  console.log('left index for the left image', leftIndex);
+
+  let rightIndex;
+  do {
+    rightIndex = Math.floor(Math.random() * PizzaPicture.allImages.length);
+  } while(rightIndex === leftIndex);
+  console.log(PizzaPicture.allImages[leftIndex].name + ' and ' + PizzaPicture.allImages[rightIndex].name);
+
+
+  leftPizzaOnThePage = PizzaPicture.allImages[leftIndex];
+  rightPizzaOnThePage = PizzaPicture.allImages[rightIndex];
+
+  // console.log('how do these relate to our if below', {leftPizzaOnThePage, rightPizzaOnThePage});
+  renderNewPizzas(leftIndex, rightIndex);
+
+};
+
+
+
+
+
+const handleClickOnPizza = function(event){
+  console.log('clicking on the picture', event.target);
+
+
+  //how many times do we run the vote? 5 time.s
+  if(totalClicks < 5){
+    const thingWeClickedOn = event.target;
+    // console.log('why',thingWeClickedOn.id);
+    const id = thingWeClickedOn.id;
+
+
+    if(id === 'left_pizza_img' || id === 'right_pizza_image'){
+      //track the pizzas
+      //increment the image in the left slot
+      if(id === 'left_pizza_img'){
+        leftPizzaOnThePage.clicks++;
+      }
+      if(id === 'right_pizza_img'){
+        rightPizzaOnThePage.clicks++;
+      }
+
+      leftPizzaOnThePage.timesShown++;
+      rightPizzaOnThePage.timesShown++;
+
+      pickNewPizzas();
+    }
+
+  }//if totalclick is 5
+
+
+
+
+
+  totalClicks++;
+  console.log(totalClicks);
+  if(totalClicks === 5){
+    pizzaImageSectionTag.removeEventListener('click', handleClickOnPizza);
+  }
+};//closes the function to handle the click
 
 
 
@@ -81,17 +183,25 @@ console.log('app js connected');
 
 
 
+//add in event listener
+pizzaImageSectionTag.addEventListener('click', handleClickOnPizza);
 
 
 
 
 
-//create pizza objects 
+//create pizza objects
+new PizzaPicture('Papa Vito\'s Thin', 'assets/images/mwDeluxePizzaThinCrust.jpg');
+new PizzaPicture('Chicago Deep Dish', 'assets/images/chicagoPizza.jpg');
 new PizzaPicture('Brick Oven Pizza', 'assets/images/brickOvenPizza.jpg');
 new PizzaPicture('Calzone', 'assets/images/calzonePizza.jpg');
-new PizzaPicture('Chicago Deep Dish', 'assets/images/chicagoPizza.jpg');
 new PizzaPicture('Chicago Pizza and Oven Grinder', 'assets/images/cpoGinderPizza.jpg');
 new PizzaPicture('Detroit Style', 'assets/images/detroitPizza.jpg');
-new PizzaPicture('Papa Vito\'s Thin', 'assets/images/mwDeluxePizzaThinCrust.jpg');
 new PizzaPicture('New York Thin', 'assets/images/newYorkPizza.jpg');
 new PizzaPicture('Shot Gun Dans', 'assets/images/sgDansHtossedMeatLovPizza.jpg');
+
+
+leftPizzaOnThePage = PizzaPicture.allImages[0];
+rightPizzaOnThePage = PizzaPicture.allImages[1];
+
+pickNewPizzas();
