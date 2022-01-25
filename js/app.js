@@ -1,6 +1,6 @@
 'use strict';
 console.log('app js connected');
-
+//lab 11 requirements
 /*
   Practice domain modeling by planning out an app  that allows users to choose their favorite between two pizzas
   App Flow:
@@ -18,7 +18,6 @@ console.log('app js connected');
         - update click++ images count of how many times it has been clicked on
         - update both images'count of times shown++
         - Randomly Pick 2 pizzas, run the same code that put them on the screen to begin with
-
   HTML
     - have a left and right image container in the html
     - Give them id's so we can select them
@@ -60,6 +59,22 @@ console.log('app js connected');
 */
 
 
+// lab 12 requirements
+/** 
+As a marketeer, I want to prevent users from seeing the same image in two subsequent iterations, so that they are not biased.
+
+Update your algorithm to randomly generate three unique product images from the images directory.
+Update your algorithm so that new products are generated, confirm that these products are not duplicates from the immediate previous set.
+As a marketing manager, I would like a visual representation of how many times a product was clicked so that I can visually analyze the results.
+
+Using ChartJS (imported from CDN), display the vote totals and the number of times a product was viewed in a bar chart format. (hint: don't forget about the <canvas> tags)
+Place the bar chart in the section located beneath your three product images
+The bar charts should only appear after all voting data has been collected.
+*/
+
+
+
+
 
 
 
@@ -76,7 +91,10 @@ let rightPizzaOnThePage = null;
 
 
 
-
+//3.HERE WE WILL UPDATE OUR CONSTRUCTOR TO USE A GLOBAL ARRAY OF OBJECTS
+// =======================================
+// Constructors
+// =======================================
 
 //Constructor Function Expression
 const PizzaPicture = function(name, imageSrc){
@@ -122,6 +140,12 @@ const pickNewPizzas = function(){
   renderNewPizzas(leftIndex, rightIndex);
 
 };
+
+
+//4.
+// =======================================
+// Other Functions
+// =======================================
 
 
 
@@ -175,12 +199,14 @@ const handleClickOnPizza = function(event){
 
 
 
+
+// 1. START HERE
+// ===================================
+// Initialize the Page
+// ===================================
+
 //add in event listener
 pizzaImageSectionTag.addEventListener('click', handleClickOnPizza);
-
-
-
-
 
 //create pizza objects
 new PizzaPicture('Papa Vito\'s Thin', 'assets/images/mwDeluxePizzaThinCrust.jpg');
@@ -191,9 +217,15 @@ new PizzaPicture('Chicago Pizza and Oven Grinder', 'assets/images/cpoGinderPizza
 new PizzaPicture('Detroit Style', 'assets/images/detroitPizza.jpg');
 new PizzaPicture('New York Thin', 'assets/images/newYorkPizza.jpg');
 new PizzaPicture('Shot Gun Dans', 'assets/images/sgDansHtossedMeatLovPizza.jpg');
-
-
+//1. HERE TOO -----------------------------------------------------
+// When I first load the page, I need to know which goat is left and right, so they can track their clicks in the javascript
 leftPizzaOnThePage = PizzaPicture.allImages[0];
 rightPizzaOnThePage = PizzaPicture.allImages[1];
 
 pickNewPizzas();
+
+
+//2. THEN LATER WE WILL ADD THE CHART IN LAST
+// ==================================
+// ChartJs Implementation
+// ==================================
