@@ -65,7 +65,7 @@ console.log('app js connected');
 
 //Global Variables
 let pizzaImageSectionTag = document.getElementById('all_pizzas');
-let rightPizzaImageTag = document.getElementById('left_pizza_img') ;
+let rightPizzaImageTag = document.getElementById('left_pizza_img');
 let leftPizzaImageTag = document.getElementById('right_pizza_img');
 
 let totalClicks = 0;
@@ -93,19 +93,11 @@ const PizzaPicture = function(name, imageSrc){
 PizzaPicture.allImages = [];
 
 
-
-
-
-
-
-
-
 const renderNewPizzas = function(leftIndex, rightIndex){
   // console.log(PizzaPicture.allImages[leftIndex].url);
   // console.log(PizzaPicture.allImages[rightIndex].url);
   leftPizzaImageTag.src = PizzaPicture.allImages[leftIndex].url;
   rightPizzaImageTag.src = PizzaPicture.allImages[rightIndex].url;
-
 };
 
 
@@ -146,7 +138,7 @@ const handleClickOnPizza = function(event){
     const id = thingWeClickedOn.id;
 
 
-    if(id === 'left_pizza_img' || id === 'right_pizza_image'){
+    if(id === 'left_pizza_img' || id === 'right_pizza_img'){
       //track the pizzas
       //increment the image in the left slot
       if(id === 'left_pizza_img'){
