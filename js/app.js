@@ -87,12 +87,12 @@ let leftPizzaOnThePage;
 let rightPizzaOnThePage;
 // References to the DOM TODO:
 let pizzaImageSectionTag = document.getElementById('all_pizzas');
-let rightPizzaImage = document.getElementById('left_pizza_img');
-let leftPizzaImage = document.getElementById('right_pizza_img');
+let leftPizzaImage = document.getElementById('left_pizza_img');
+let rightPizzaImage = document.getElementById('right_pizza_img');
 // console.log('',{leftPizzaImage, rightPizzaImage});
 //the letiable to store the pizzas that are already on the page
 let chartResults = document.getElementById('chartResults');
-console.log(chartResults);
+// console.log(chartResults);
 let resultsList = document.getElementById('resultsList');
 
 
@@ -119,7 +119,7 @@ const PizzaPicture = function(name, imageSrc){
 };
 // PizzaPicture.allImages = [];
 
-console.log(allPizzas);
+// console.log(allPizzas);
 
 //5. Comment out the no longer using functions ---------------------------------
 // const renderNewPizzas = function(leftIndex, rightIndex){
@@ -190,11 +190,11 @@ function handleClickOnPizza(event){
     // console.log('not clicking on pic!');
     return;
   }
-  console.log(event.target.tagName);
-  console.log(event.target.id);
+  // console.log(event.target.tagName);
+  // console.log(event.target.id);
   //increment total clicks
   totalClicks++;
-  console.log('total clicks',totalClicks);
+  // console.log('total clicks',totalClicks);
   //how many times do we run the vote? 5 time.s
   // if(totalClicks < 5){
   // const thingWeClickedOn = event.target;
@@ -207,15 +207,18 @@ function handleClickOnPizza(event){
   //refactor this with new id --------------------------
   if(event.target.id === 'left_pizza_img'){
     //log to see diff between getting id and then getting src
-    console.log(leftPizzaOnThePage);
+    console.log('current left picture', leftPizzaOnThePage);
     leftPizzaOnThePage.clicks++;
-    console.log('did we see the click count',leftPizzaOnThePage.clicks);
+    console.log('did we see the click count left',leftPizzaOnThePage.clicks);
   }
   if(event.target.id === 'right_pizza_img'){
+    console.log('current right picture',rightPizzaOnThePage);
     rightPizzaOnThePage.clicks++;
+    console.log('did we see the click count right',rightPizzaOnThePage);
+
   }
-  // leftPizzaOnThePage.timesShown++;
-  // rightPizzaOnThePage.timesShown++;
+  leftPizzaOnThePage.timesShown++;
+  rightPizzaOnThePage.timesShown++;
   // pickNewPizzas();
   // }
   // }//if totalclick is 5
@@ -236,7 +239,7 @@ function handleClickOnPizza(event){
   );
   //Then update the temp picked pizzas array with new image.
   tempPickedPizzas.push(allPizzas[leftPizzaIndex]);
-  console.log('temp array', tempPickedPizzas);
+  // console.log('temp array', tempPickedPizzas);
   //--------------------------------------------------------------
 
   let rightPizzaIndex;
@@ -256,12 +259,12 @@ function handleClickOnPizza(event){
   // Now set the new indexs up for the next objects to be seen and tracked
   leftPizzaOnThePage = allPizzas[leftPizzaIndex];
   rightPizzaOnThePage = allPizzas[rightPizzaIndex];
-  console.log({leftPizzaOnThePage, rightPizzaOnThePage});
+  // console.log({leftPizzaOnThePage, rightPizzaOnThePage});
 
   //now update src with new url from object to display the objects on the page.
   leftPizzaImage.src = leftPizzaOnThePage.imageSrc;
   rightPizzaImage.src = rightPizzaOnThePage.imageSrc;
-  console.log({leftPizzaImage, rightPizzaImage});
+  // console.log({leftPizzaImage.src, rightPizzaImage.src});
 
   //reset previously picked images for randomization
   previouslyPickedPizzas = [];
@@ -366,16 +369,16 @@ rightPizzaOnThePage = allPizzas[1];
 function makeAPizzaChart(){
 
   const pizzaNamesArray = [];
-  const pizzaClicksArray =[];
+  const pizzaClicksArray = [];
 
   for(let i = 0; i < allPizzas.length; i++){
-    const singleGoatName = allPizzas[i].name;
-    pizzaNamesArray.push(singleGoatName);
+    const singlePizzaName = allPizzas[i].name;
+    pizzaNamesArray.push(singlePizzaName);
   }
 
   for(let i = 0; i < allPizzas.length; i++){
-    const singleGoatLikes = allPizzas[i].clicks;
-    pizzaClicksArray.push(singleGoatLikes);
+    const singlePizzaClicks = allPizzas[i].clicks;
+    pizzaClicksArray.push(singlePizzaClicks);
   }
 
   const ctx = document.getElementById('pizzaChart').getContext('2d');
