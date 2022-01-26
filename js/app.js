@@ -274,7 +274,7 @@ function handleClickOnPizza(event){
     pizzaImageSectionTag.removeEventListener('click', handleClickOnPizza);
     //Add call to the makeAPizzaChart();
   }
-};//closes the function to handle the click
+}//closes the function to handle the click
 
 
 
@@ -308,6 +308,9 @@ function handleClickOnPizza(event){
 
 //add in event listener
 pizzaImageSectionTag.addEventListener('click', handleClickOnPizza);
+
+
+
 
 //create pizza objects
 new PizzaPicture('Papa Vito\'s Thin', 'assets/images/mwDeluxePizzaThinCrust.jpg');
