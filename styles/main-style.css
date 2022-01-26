@@ -1,4 +1,6 @@
 body {
+  width: 1600px;
+  margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #d7dbe4;
 }
@@ -16,10 +18,24 @@ video, audio, img {
   align-items: center;
 }
 
-/* img {
-  height: 500px;
-  width: 500px;
-  float: left;
-  margin-left: 50px;
-  margin-top: 50px;
-} */
+img {
+  height: 250px;
+  width: 250px;
+}
+
+
+header{ 
+  clear: both;
+  height: 150px;
+  background-color: #3086b8;
+  text-align: center;
+}
+
+.flexFloat{
+  display: flex;
+}
+
+section div {
+  margin-top: 45px;
+  padding: 15px;
+}

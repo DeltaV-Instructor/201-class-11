@@ -1,36 +1,22 @@
 .grid{
   display: grid;
-  width:960px;
+  width:1600px;
   margin: 0 auto;
-  grid-template-columns: 2.5% 20% 5% 20% 5% 20% 5% 20% 2.5;
+  grid-template-columns: 25% 60% 15%;
   grid-template-rows: 25% 25% 25% 25%;
 }
 
 
 .row-full {
+  margin-top: 15px;
   grid-row-start: 1;
   grid-row-end:5;
 }
-.row-a{
-  grid-row-start: 1;
-  grid-row-end:2;
-}
-.row-b{
-  grid-row-start: 2;
-  grid-row-end:3;
-}
-.row-c{
-  grid-row-start: 3;
-  grid-row-end:4;
-}
-.row-bc{
-  grid-row-start: 2;
-  grid-row-end:4;
-}
 
+/* 
 .column-a {
-  grid-column-start: 2 ;
-  grid-column-end: 3;
+  grid-column-start: 1 ;
+  grid-column-end: 2;
 }
 .column-b {
   grid-column-start: 4;
@@ -56,4 +42,4 @@
 .column-cd {
   grid-column-start: 6;
   grid-column-end: 9;
-}
+} */
