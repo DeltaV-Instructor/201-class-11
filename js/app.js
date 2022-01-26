@@ -78,7 +78,7 @@ The bar charts should only appear after all voting data has been collected.
 
 
 
-//Global Variables
+//Global letiables
 let totalClicks = 0;
 //Add new array-----------------------------------------------
 const allPizzas = [];
@@ -90,7 +90,10 @@ let pizzaImageSectionTag = document.getElementById('all_pizzas');
 let rightPizzaImage = document.getElementById('left_pizza_img');
 let leftPizzaImage = document.getElementById('right_pizza_img');
 // console.log('',{leftPizzaImage, rightPizzaImage});
-//the variable to store the pizzas that are already on the page
+//the letiable to store the pizzas that are already on the page
+let chartResults = document.getElementById('chartResults');
+console.log(chartResults);
+let resultsList = document.getElementById('resultsList');
 
 
 
@@ -184,7 +187,7 @@ console.log(allPizzas);
 function handleClickOnPizza(event){
   // console.log('clicking on the picture', event.target);
   if(event.target.tagName !== 'IMG'){
-    console.log('not clicking on pic!');
+    // console.log('not clicking on pic!');
     return;
   }
   console.log(event.target.tagName);
@@ -272,15 +275,39 @@ function handleClickOnPizza(event){
 
   if(totalClicks === 5){
     pizzaImageSectionTag.removeEventListener('click', handleClickOnPizza);
-    //Add call to the makeAPizzaChart();
+    
   }
 }//closes the function to handle the click
 
 
 
 
+function handleResultsList(event){
+  console.log('click on the result LIST',event);
+  console.log(allPizzas);
+
+  document.getElementById('pizza-clicks').style.background = '#8197c9';
+  document.getElementById('pizza-clicks').style.color = 'whitesmoke';
+
+  let ul = document.getElementById('pizza-clicks');
+  //reset list
+  ul.innerHTML = '';
+  //for each placholder image...
+  for(let i = 0; i < allPizzas.length; i++){
+    let current = allPizzas[i];
+    console.log(current.name);
+    //add to <ul id="results">
+    let li = document.createElement('li');
+    li.textContent = current.name + ' got ' + current.clicks + ' votes';
+    ul.appendChild(li);
+  }
+}
 
 
+function handleChartResults(){
+  console.log('click on the result CHART');
+  //Add call to the makeAPizzaChart();
+}
 
 
 
@@ -309,8 +336,8 @@ function handleClickOnPizza(event){
 //add in event listener
 pizzaImageSectionTag.addEventListener('click', handleClickOnPizza);
 
-
-
+resultsList.addEventListener('click', handleResultsList);
+chartResults.addEventListener('click', handleChartResults);
 
 //create pizza objects
 new PizzaPicture('Papa Vito\'s Thin', 'assets/images/mwDeluxePizzaThinCrust.jpg');
@@ -325,7 +352,7 @@ new PizzaPicture('Shot Gun Dans', 'assets/images/sgDansHtossedMeatLovPizza.jpg')
 // When I first load the page, I need to know which pizza is left and right, so they can track their clicks in the javascript
 leftPizzaOnThePage = allPizzas[0];
 rightPizzaOnThePage = allPizzas[1];
-console.log('',{leftPizzaOnThePage, rightPizzaOnThePage});
+// console.log('',{leftPizzaOnThePage, rightPizzaOnThePage});
 // pickNewPizzas();
 
 
