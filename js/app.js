@@ -275,7 +275,7 @@ function handleClickOnPizza(event){
 
   if(totalClicks === 5){
     pizzaImageSectionTag.removeEventListener('click', handleClickOnPizza);
-    
+
   }
 }//closes the function to handle the click
 
@@ -307,6 +307,7 @@ function handleResultsList(event){
 function handleChartResults(){
   console.log('click on the result CHART');
   //Add call to the makeAPizzaChart();
+  makeAPizzaChart();
 }
 
 
@@ -360,3 +361,48 @@ rightPizzaOnThePage = allPizzas[1];
 // ==================================
 // ChartJs Implementation
 // ==================================
+
+
+function makeAPizzaChart(){
+
+  const pizzaNamesArray = [];
+  const pizzaClicksArray =[];
+
+  for(let i = 0; i < allPizzas.length; i++){
+    const singleGoatName = allPizzas[i].name;
+    pizzaNamesArray.push(singleGoatName);
+  }
+
+  for(let i = 0; i < allPizzas.length; i++){
+    const singleGoatLikes = allPizzas[i].clicks;
+    pizzaClicksArray.push(singleGoatLikes);
+  }
+
+  const ctx = document.getElementById('pizzaChart').getContext('2d');
+  const pizzaChart = new Chart(ctx, {
+  // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+      labels: pizzaNamesArray,
+      datasets: [{
+        label: 'Pizza Clicks',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: pizzaClicksArray
+      }]
+    },
+
+    // Configuration options go here
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
