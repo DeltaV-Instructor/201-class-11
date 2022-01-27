@@ -107,20 +107,15 @@ const renderNewPizzas = function(leftIndex, rightIndex){
 const pickNewPizzas = function(){
   const leftIndex = Math.floor(Math.random() * PizzaPicture.allImages.length);
   console.log('left index for the left image', leftIndex);
-
   let rightIndex;
   do {
     rightIndex = Math.floor(Math.random() * PizzaPicture.allImages.length);
   } while(rightIndex === leftIndex);
-  console.log(PizzaPicture.allImages[leftIndex].name + ' and ' + PizzaPicture.allImages[rightIndex].name);
-
-
+  // console.log(PizzaPicture.allImages[leftIndex].name + ' and ' + PizzaPicture.allImages[rightIndex].name);
   leftPizzaOnThePage = PizzaPicture.allImages[leftIndex];
   rightPizzaOnThePage = PizzaPicture.allImages[rightIndex];
-
   // console.log('how do these relate to our if below', {leftPizzaOnThePage, rightPizzaOnThePage});
   renderNewPizzas(leftIndex, rightIndex);
-
 };
 
 
