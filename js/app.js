@@ -1,7 +1,5 @@
 'use strict';
 console.log('app js connected');
-
-
 // lab 12 requirements
 /**
 As a marketeer, I want to prevent users from seeing the same image in two subsequent iterations, so that they are not biased.
@@ -14,8 +12,6 @@ Using ChartJS (imported from CDN), display the vote totals and the number of tim
 Place the bar chart in the section located beneath your three product images
 The bar charts should only appear after all voting data has been collected.
 */
-
-
 
 //Global Variables
 let totalClicks = 0;
@@ -32,11 +28,6 @@ let resultsList = document.getElementById('resultsList');
 let leftPizzaOnThePage;
 let rightPizzaOnThePage;
 
-
-
-
-
-
 //3.HERE WE WILL UPDATE OUR CONSTRUCTOR TO USE A GLOBAL ARRAY OF OBJECTS
 // =======================================
 // Constructors
@@ -51,8 +42,6 @@ const PizzaPicture = function(name, imageSrc){
   this.timesShown = 0;
   //push into an array
   allPizzas.push(this);
-
-
 };
 console.log(allPizzas);
 
@@ -103,29 +92,20 @@ const handleClickOnPizza = function(event){
   console.log({leftPizzaIndex, rightPizzaIndex});
   leftPizzaOnThePage = allPizzas[leftPizzaIndex];
   rightPizzaOnThePage = allPizzas[rightPizzaIndex];
-
-
   //now update src with new url from object to display the objects on the page.
   console.log('do I have an imageSrc?',leftPizzaOnThePage.imageSrc);
   leftPizzaImage.src = leftPizzaOnThePage.imageSrc;
   rightPizzaImage.src = rightPizzaOnThePage.imageSrc;
 
-
   previouslyPickedPizzas = [];
   previouslyPickedPizzas.push(allPizzas[leftPizzaIndex]);
   previouslyPickedPizzas.push(allPizzas[rightPizzaIndex]);
 
-
-
-
   console.log(totalClicks);
-  if(totalClicks === 5){
+  if(totalClicks === 25){
     pizzaImageSectionTag.removeEventListener('click', handleClickOnPizza);
   }
 };//closes the function to handle the click
-
-
-
 
 
 function handleResultsList(){
@@ -149,27 +129,6 @@ function handleChartResults(){
   makeAPizzaChart();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 1. START HERE
 // ===================================
 // Initialize the Page
@@ -179,7 +138,6 @@ function handleChartResults(){
 pizzaImageSectionTag.addEventListener('click', handleClickOnPizza);
 chartResults.addEventListener('click', handleChartResults);
 resultsList.addEventListener('click', handleResultsList);
-
 
 
 //create pizza objects
@@ -192,19 +150,65 @@ new PizzaPicture('Detroit Style', 'assets/images/detroitPizza.jpg');
 new PizzaPicture('New York Thin', 'assets/images/newYorkPizza.jpg');
 new PizzaPicture('Shot Gun Dans', 'assets/images/sgDansHtossedMeatLovPizza.jpg');
 
-
 leftPizzaOnThePage = allPizzas[0];
 rightPizzaOnThePage = allPizzas[1];
-
-
-
-
 
 //2. THEN LATER WE WILL ADD THE CHART IN LAST
 // ==================================
 // ChartJs Implementation
 // ==================================
 function makeAPizzaChart(){
+  let pizzaNamesArray = [];
+  let pizzaClicksArray = [];
+
+  for(let i = 0; i < allPizzas.length; i++){
+    const singlePizzaName = allPizzas[i].name;
+    pizzaNamesArray.push(singlePizzaName);
+  }
+
+  for(let i = 0; i < allPizzas.length; i++){
+    const singlePizzaClicks = allPizzas[i].clicks;
+    pizzaClicksArray.push(singlePizzaClicks);
+  }
+
+
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: pizzaNamesArray,
+      datasets: [{
+        label: '# of Votes',
+        // data: [12, 19, 3, 5, 2, 3],
+        data: pizzaClicksArray,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 
 
 
@@ -214,9 +218,4 @@ function makeAPizzaChart(){
 
 
 
-
-
-
-
-  
 }
