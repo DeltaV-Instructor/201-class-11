@@ -5,27 +5,11 @@
   grid-template-columns: 25% 40% 20% 15%;
   grid-template-rows: 25% 25% 25% 25%;
 }
-
-
 .row-full {
   margin-top: 15px;
   grid-row-start: 1;
   grid-row-end:5;
 }
-/* .row-a{
-  grid-row-start: 1;
-  grid-row-end:1;
-}
-.row-b{
-  grid-row-start: 2;
-  grid-row-end:2;
-}
-.row-c{
-  grid-row-start: 3;
-  grid-row-end:3;
-} */
-
-
 .column-a {
   grid-column-start: 1 ;
   grid-column-end: 1;
