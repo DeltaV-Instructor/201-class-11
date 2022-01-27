@@ -1,8 +1,8 @@
 body {
   width: 1600px;
-  margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #d7dbe4;
+  margin: 0 auto;
 }
 
 video, audio, img {
@@ -24,19 +24,19 @@ img {
 }
 
 
-header{ 
-  clear: both;
-  height: 150px;
-  background-color: #3086b8;
-  text-align: center;
-}
-
-.flexFloat{
+.flexFloat {
   display: inline;
 }
 section div {
   float: left;
-  
+}
+
+
+
+header {
+  height: 150px;
+  background-color: #3086b8;
+  text-align: center;
 }
 
 div {
@@ -44,7 +44,7 @@ div {
   padding: 15px;
 }
 
-button{ 
+button {
   padding: 20px;
   margin-bottom: 15px;
 }
