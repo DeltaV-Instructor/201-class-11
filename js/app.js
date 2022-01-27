@@ -135,6 +135,7 @@ const PizzaPicture = function(name, imageSrc){
 
 //add function for getting new pizza objects from array based on the index number we get back from out random generator.
 <<<<<<< HEAD
+<<<<<<< HEAD
 const pickNewPizzas = function(){
   const leftIndex = Math.floor(Math.random() * PizzaPicture.allImages.length);
   console.log('left index for the left image', leftIndex);
@@ -152,6 +153,26 @@ const pickNewPizzas = function(){
 // const pickNewPizzas = function(){
 //   const leftIndex = Math.floor(Math.random() * PizzaPicture.allImages.length);
 //   console.log('left index for the left image', leftIndex);
+=======
+// const pickNewPizzas = function(){
+//   const leftIndex = Math.floor(Math.random() * PizzaPicture.allImages.length);
+//   console.log('left index for the left image', leftIndex);
+
+//   let rightIndex;
+//   do {
+//     rightIndex = Math.floor(Math.random() * PizzaPicture.allImages.length);
+//   } while(rightIndex === leftIndex);
+//   console.log(PizzaPicture.allImages[leftIndex].name + ' and ' + PizzaPicture.allImages[rightIndex].name);
+
+
+//   leftPizzaOnThePage = PizzaPicture.allImages[leftIndex];
+//   rightPizzaOnThePage = PizzaPicture.allImages[rightIndex];
+
+//   // console.log('how do these relate to our if below', {leftPizzaOnThePage, rightPizzaOnThePage});
+//   renderNewPizzas(leftIndex, rightIndex);
+
+// };
+>>>>>>> 8d901fad7bf432526d664cda12d616f5113afeaf
 
 //   let rightIndex;
 //   do {
@@ -176,8 +197,14 @@ const pickNewPizzas = function(){
 
 
 
+<<<<<<< HEAD
 
 
+//4.
+// =======================================
+// Other Functions
+// =======================================
+=======
 //4.
 // =======================================
 // Other Functions
@@ -189,6 +216,7 @@ const pickNewPizzas = function(){
 
 
 
+>>>>>>> 8d901fad7bf432526d664cda12d616f5113afeaf
 
 
 
@@ -200,6 +228,16 @@ const pickNewPizzas = function(){
 
 
 
+<<<<<<< HEAD
+
+
+
+
+
+
+
+=======
+>>>>>>> 8d901fad7bf432526d664cda12d616f5113afeaf
 function handleClickOnPizza(event){
   // console.log('clicking on the picture', event.target);
   if(event.target.tagName !== 'IMG'){
@@ -295,9 +333,45 @@ function handleClickOnPizza(event){
   if(totalClicks === 5){
     pizzaImageSectionTag.removeEventListener('click', handleClickOnPizza);
 
+<<<<<<< HEAD
   }
 }//closes the function to handle the click
 
+=======
+  }
+}//closes the function to handle the click
+
+
+
+
+function handleResultsList(event){
+  console.log('click on the result LIST',event);
+  console.log(allPizzas);
+
+  document.getElementById('pizza-clicks').style.background = '#8197c9';
+  document.getElementById('pizza-clicks').style.color = 'whitesmoke';
+
+  let ul = document.getElementById('pizza-clicks');
+  //reset list
+  ul.innerHTML = '';
+  //for each placholder image...
+  for(let i = 0; i < allPizzas.length; i++){
+    let current = allPizzas[i];
+    console.log(current.name);
+    //add to <ul id="results">
+    let li = document.createElement('li');
+    li.textContent = current.name + ' got ' + current.clicks + ' votes';
+    ul.appendChild(li);
+  }
+}
+
+
+function handleChartResults(){
+  console.log('click on the result CHART');
+  //Add call to the makeAPizzaChart();
+  makeAPizzaChart();
+}
+>>>>>>> 8d901fad7bf432526d664cda12d616f5113afeaf
 
 
 
@@ -346,8 +420,11 @@ function handleChartResults(){
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 8d901fad7bf432526d664cda12d616f5113afeaf
 // 1. START HERE
 // ===================================
 // Initialize the Page
@@ -375,6 +452,7 @@ rightPizzaOnThePage = allPizzas[1];
 // console.log('',{leftPizzaOnThePage, rightPizzaOnThePage});
 // pickNewPizzas();
 
+<<<<<<< HEAD
 
 //2. THEN LATER WE WILL ADD THE CHART IN LAST
 // ==================================
@@ -397,6 +475,30 @@ function makeAPizzaChart(){
     pizzaClicksArray.push(singlePizzaClicks);
   }
 
+=======
+
+//2. THEN LATER WE WILL ADD THE CHART IN LAST
+// ==================================
+// ChartJs Implementation
+// ==================================
+
+
+function makeAPizzaChart(){
+
+  const pizzaNamesArray = [];
+  const pizzaClicksArray = [];
+
+  for(let i = 0; i < allPizzas.length; i++){
+    const singlePizzaName = allPizzas[i].name;
+    pizzaNamesArray.push(singlePizzaName);
+  }
+
+  for(let i = 0; i < allPizzas.length; i++){
+    const singlePizzaClicks = allPizzas[i].clicks;
+    pizzaClicksArray.push(singlePizzaClicks);
+  }
+
+>>>>>>> 8d901fad7bf432526d664cda12d616f5113afeaf
   const ctx = document.getElementById('pizzaChart').getContext('2d');
   const pizzaChart = new Chart(ctx, {
   // The type of chart we want to create
