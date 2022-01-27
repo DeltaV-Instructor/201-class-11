@@ -106,6 +106,7 @@ leftPizzaOnThePage = allPizzas[0];
 rightPizzaOnThePage = allPizzas[1];
 
 function makeAPizzaChart(){
+  console.log(document.getElementById('pizzaChart'));
 
   const pizzaNamesArray = [];
   const pizzaClicksArray = [];
@@ -121,7 +122,8 @@ function makeAPizzaChart(){
   }
 
   const ctx = document.getElementById('pizzaChart').getContext('2d');
-  const pizzaChart = new Chart(ctx, {
+  // eslint-disable-next-line no-undef
+  new Chart(ctx, {
     type: 'bar',
     data: {
       labels: pizzaNamesArray,
