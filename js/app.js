@@ -65,8 +65,8 @@ console.log('app js connected');
 
 //Global Variables
 let pizzaImageSectionTag = document.getElementById('all_pizzas');
-let rightPizzaImageTag = document.getElementById('left_pizza_img');
-let leftPizzaImageTag = document.getElementById('right_pizza_img');
+let leftPizzaImageTag = document.getElementById('left_pizza_img');
+let rightPizzaImageTag = document.getElementById('right_pizza_img');
 
 let totalClicks = 0;
 
